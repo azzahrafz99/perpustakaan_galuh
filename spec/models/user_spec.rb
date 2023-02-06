@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User do
+  describe 'Associations' do
+    it { is_expected.to have_many(:transactions) }
+  end
+
   describe 'Validations' do
     let(:user) do
       create(:user, email: 'test@sample.com', password: 'password123',
