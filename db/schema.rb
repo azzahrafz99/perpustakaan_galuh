@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_06_111854) do
+ActiveRecord::Schema.define(version: 2023_02_06_120349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2023_02_06_111854) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.date "borrow_date"
+    t.date "loan_date"
     t.date "return_date"
     t.integer "period"
     t.bigint "user_id"
