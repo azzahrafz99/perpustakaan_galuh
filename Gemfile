@@ -41,6 +41,7 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.11', '>= 1.11.4'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'timecop'
 end
 
 group :development do
