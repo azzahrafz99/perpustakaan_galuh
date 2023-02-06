@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :book do
+    association :category
+
     title     { Faker::Book.title }
     author    { Faker::Book.author }
     publisher { Faker::Book.publisher }
