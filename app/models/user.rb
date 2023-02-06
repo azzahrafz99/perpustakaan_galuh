@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true
 
+  # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :transactions
+  # rubocop:enable Rails/HasManyOrHasOneDependent
 end
