@@ -11,6 +11,13 @@
   </head>
 
   <body>
+    <% content_for :alert do %>
+      <%= render 'shared/flashes' %>
+    <% end %>
+
+    <% if current_user %>
+      <%= render 'shared/navbar' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

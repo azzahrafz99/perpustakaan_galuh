@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="header">
+        <div class="main-content">
+          <h3 class="title text-grey">Forgot your password?</h3>
+
+          <% flash.each do |message_type, message| %>
+            <div class="alert flash-<%= message_type %> alert-<%= message_type == 'notice' ? 'success' : 'danger' %>">
+              <%= content_tag(:div, message, role: "alert") %>
+            </div>
+          <% end %>
+
+          <div class="form">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+              <div class='form-group material-input-text'>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+                <%= f.label :email %><br />
+              </div>
+
+              <div class="actions form-group">
+                <%= f.submit "Send me reset password instructions", class: 'btn btn-default btn-primary' %>
+              </div>
+
+              <%= render "users/shared/links" %>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="background">
+        <p class="credit">Photo by Mark Boss on Unsplash</p>
+      </div>
+    </div>
+  </div>
+</div>
+

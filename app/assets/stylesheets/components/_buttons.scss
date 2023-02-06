@@ -1,0 +1,31 @@
+.btn-default {
+  border-radius: 2px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  height: 65px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.btn {
+  font-size: 14px;
+
+  &__full_width {
+    width: 100%;
+  }
+}
+
+.reset-search-btn, .remove_fields {
+  text-decoration: none !important;
+}
+
+.reset-search-btn {
+  background-color: $light-grey;
+}
+
+.btn-secondary {
+  background-color: $light-grey3;
+  border-color: $light-grey3;
+}

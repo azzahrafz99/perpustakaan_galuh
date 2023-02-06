@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="header">
+        <div class="main-content">
+          <h3 class="title text-grey">Sign In to <span class="text-primary">Perpustakaan Galuh</span></h3>
+          <div class="sub-title">
+            <p>Welcome back!</p>
+          </div>
+
+          <% flash.each do |message_type, message| %>
+            <div class="alert flash-<%= message_type %> alert-<%= message_type == 'notice' ? 'success' : 'danger' %>">
+              <%= content_tag(:div, message, role: "alert") %>
+            </div>
+          <% end %>
+
+          <div class="form">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class='form-group material-input-text'>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+                <%= f.label :email %><br />
+              </div>
+
+              <div class='form-group material-input-text'>
+                <%= f.password_field :password, class: "form-control" %>
+                <%= f.label :password %><br />
+              </div>
+
+              <% if devise_mapping.rememberable? %>
+                <div class="field">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+              <% end %>
+
+              <div class='form-group'>
+                <%= f.submit 'Sign In', id: 'login-submit', class: 'btn btn-default btn-primary' %>
+              </div>
+
+              <%= render "users/shared/links" %>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="background">
+        <p class="credit">Photo by Mark Boss on Unsplash</p>
+      </div>
+    </div>
+  </div>
+</div>
+

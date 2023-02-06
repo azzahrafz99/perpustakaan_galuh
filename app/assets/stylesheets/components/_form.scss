@@ -1,0 +1,24 @@
+.form-wrapper {
+  .title {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  a {
+    font-size: 14px;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.custom-file-label {
+  border: 1px solid $light-grey;
+}
+
+label[required=required]:after {
+  content: "*";
+  color: red;
+}

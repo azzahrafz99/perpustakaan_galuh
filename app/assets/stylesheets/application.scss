@@ -1,2 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500&display=swap');
+
+// Base
+@import 'base/variables';
+@import 'base/typography';
+@import 'base/core';
+@import 'base/helpers';
+
 // External Library
 @import 'bootstrap/scss/bootstrap';
+
+// Components
+@import 'components/buttons';
+@import 'components/breadcrumb';
+@import 'components/cards';
+@import 'components/form';
+@import 'components/input_text';
+@import 'components/pagination';
+@import 'components/sidebar';
+@import 'components/table';
+
+// Overrides
+@import 'overrides/alert';
+@import 'overrides/badges';
+@import 'overrides/form';
+@import 'overrides/navbar';
+
+// Pages
+@import 'pages/user_sessions';

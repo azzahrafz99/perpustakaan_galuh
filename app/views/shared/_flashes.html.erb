@@ -1,0 +1,24 @@
+<div class='alert-container' id='flashes'>
+  <% if notice.present? %>
+    <div class="alert alert-success col-sm-12 col-md-12" role="alert">
+      <%= notice.html_safe %>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-warning col-sm-12 col-md-12" role="alert">
+      <%= flash[:alert].html_safe %>
+    </div>
+  <% end %>
+  <% if flash[:error] %>
+    <div class="alert alert-danger col-sm-12 col-md-12" role="alert">
+      <% if flash[:error].is_a?(Array) %>
+        <% flash[:error].each do |error| %>
+          <%= error.html_safe %>
+          <br />
+        <% end %>
+      <% else %>
+        <%= flash[:error].html_safe %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

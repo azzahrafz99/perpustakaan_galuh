@@ -1,0 +1,133 @@
+.dataTables_wrapper {
+  margin-top: 20px !important;
+}
+
+table.table.dataTable, .table {
+  border-bottom: none;
+  width: 100% !important;
+
+  thead th {
+    border: none;
+    border-bottom: 1px solid $light-grey;
+    color: $grey;
+    font-size: 15px;
+    font-weight:  500;
+    text-transform: capitalize;
+  }
+
+  td.field-value {
+    color: $grey;
+    font-weight: 500;
+  }
+
+  td {
+    border-top: none;
+    border-bottom: 1px solid $light-grey;
+    color: $light-grey2;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5rem;
+    padding: 14px 18px !important;
+
+    a.btn.btn-sm {
+      margin-left: 5px;
+    }
+  }
+}
+
+.dataTables_filter {
+  margin-right: 20px;
+
+  label {
+    font-size: 14px;color: $primary;
+  }
+
+  input {
+    border: none;
+    border-bottom: 1px solid $light-grey;
+    border-radius: 0;
+    margin-left: 14px;
+    padding: 0;
+    vertical-align: super;
+
+    &:active, &:focus {
+      -webkit-box-shadow: none!important;
+      box-shadow: none!important;
+    }
+
+    &:focus {
+      color: $light-grey2;
+      background-color: white;
+      border-color: #8690f6;
+      outline: 0;
+      -webkit-box-shadow: 0 0 0 0.2rem $primary;
+      box-shadow: 0 0 0 0.2rem $primary;
+    }
+  }
+}
+
+.dataTables_length {
+  margin-left: 20px;
+
+  label {
+    color: $primary;
+    font-size: 14px;
+  }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: $light-grey;
+    margin: 0 8px;
+    text-indent: 1px;
+    text-overflow: '';
+    width: 55px !important;
+  }
+}
+
+.dataTables_info {
+  color: $dusk-purple !important;
+  font-size: 13px;
+  margin-left: 20px;
+}
+
+.dataTables_paginate {
+  margin-top: 10px;
+}
+
+a.paginate_button {
+  border: none !important;
+  border-radius: 3px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin: 5px;
+
+  &:hover {
+    background: $primary !important;
+    color: white !important;
+  }
+
+  &:focus, &:active {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+} 
+
+a.paginate_button.current {
+  border: none !important;
+}
+
+a.paginate_button.next, a.paginate_button.last, a.paginate_button.previous, a.paginate_button.first {
+  border: none !important;
+  background: $light-grey !important;
+  
+  &:hover {
+    color: white !important;
+    background-color: $primary !important;
+  }
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  background: $primary !important;
+    color: white !important;
+}

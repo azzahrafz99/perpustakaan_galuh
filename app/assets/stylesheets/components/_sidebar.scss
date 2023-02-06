@@ -1,0 +1,33 @@
+.sidebar {
+  .sidebar-sticky {
+    .nav-item {
+      padding: 8px 5px;
+
+      i {
+        margin-right: 10px;
+      }
+
+      &:hover {
+        background-color: $light-primary;  
+      }
+    }
+
+    .nav-item.active {
+      background-color: $light-primary;
+    }
+  }
+
+  .parent-menu {
+    i.fa.fa-caret-down {
+      right: 12px;
+      margin-top: 4px;
+      position: absolute;
+    }
+  }
+
+  .dropdown-container {
+    display: none;
+    max-height: 550px;
+    overflow-y: scroll;
+  }
+}

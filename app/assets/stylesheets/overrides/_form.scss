@@ -1,0 +1,79 @@
+.form-control, .bootstrap-tagsinput {
+  border: 1px solid $light-grey;
+  border-radius: 4px;
+
+  &:active, &:focus {
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+  }
+
+  &:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(88,103,221,.25);
+    background-color: white;
+    border-color: #8690f6;
+    box-shadow: 0 0 0 0.2rem rgba(88,103,221,.25);
+    color: $grey;
+    outline: 0;
+  }
+}
+
+.form-group {
+  label {
+    color: $grey;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: .8rem;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+.select2-container--default .select2-selection--multiple,
+.select2-container--default .select2-selection--single {
+  border: 1px solid $light-grey !important;
+  height: calc(1.5em + 0.75rem + 2px) !important;
+
+  .select2-selection__rendered {
+    line-height: 36px;
+  }
+
+  .select2-selection__arrow {
+    top: 6px;
+  }
+}
+
+.select2-container {
+  width: 100% !important;
+}
+
+.bootstrap-tagsinput {
+  color: #495057;
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding-top: 8px;
+
+  span.tag {
+    background-color: #898c9a;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 0 5px;
+  }
+}
+
+.select2-container--default .select2-selection--multiple {
+  height: calc(1.5em + 0.75rem + 15px) !important;
+}
+
+.select2-container--default
+.select2-selection--multiple
+.select2-selection__rendered,
+.select2-container--default
+.select2-selection--single
+.select2-selection__rendered {
+  font-size: 14px;
+}

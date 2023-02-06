@@ -1,0 +1,14 @@
+.alert {
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#error_explanation {
+  h5, ul li {
+    color: $red;
+  }
+
+  ul li {
+    font-size: 14px;
+  }
+}

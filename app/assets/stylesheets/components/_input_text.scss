@@ -1,0 +1,57 @@
+.material-input-text {
+  label {
+    color: $grey;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: -50px 0 0 30px;
+    pointer-events: none;
+    position: absolute;
+    transition: 0.2s ease all;
+  }
+
+  input, textarea {
+    border-radius: 3px;
+    border: 1px solid $light-dusk-purple;
+    box-shadow: 25px 35px 40px $dark-grey;
+    font-size: 16px;
+    height: 75px;
+    margin: 20px 0 0 0px;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input:focus~label,
+  input:valid~label,
+  textarea:focus~label,
+  textarea:valid~label {
+    color: $grey;
+    font-size: 14px;
+    margin: -65px 0 0 30px;
+    outline: none;
+  }
+
+  input:focus,
+  input:valid,
+  textarea:focus,
+  textarea:valid {
+    border-left: 3px solid $info;
+    font-size: 16px;
+    padding: 15px 37px 0 30px;
+  }
+
+  &__textarea {
+    label {
+      margin-top: -135px !important;
+    }
+
+    textarea {
+      height: 150px;
+      padding-top: 40px !important;
+      resize: none;
+    }
+  }
+}
