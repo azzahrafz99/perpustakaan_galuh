@@ -1,6 +1,11 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_filter 'channels/application_cable/channel.rb'
+  add_filter 'channels/application_cable/connection.rb'
+  add_filter 'mailers/application_mailer.rb'
+  add_filter 'jobs/application_job.rb'
+end
 
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
