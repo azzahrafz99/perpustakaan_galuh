@@ -1,0 +1,93 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+inherit_mode:
+  merge:
+    - Exclude
+AllCops:
+  DisplayCopNames: true
+  NewCops: enable
+  Exclude:
+    - 'vendor/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'db/migrate/*'
+    - 'db/seed.rb'
+    - 'config/puma.rb'
+    - 'config/routes.rb'
+    - 'config/spring.rb'
+    - 'config/application.rb'
+    - 'bin/*'
+    - 'app/channels/application_cable/channel.rb'
+    - 'app/channels/application_cable/connection.rb'
+    - 'lib/tasks/legacy.rake'
+    - 'lib/tasks/legacy_classes.rb'
+
+Style/AsciiComments:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/DocumentationMethod:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Metrics/ModuleLength:
+  Exclude:
+    - "**/*_spec.rb"
+Metrics/BlockLength:
+  Exclude:
+    - "config/routes.rb"
+    - "db/**/*.rb"
+    - "**/*_spec.rb"
+    - "spec/**/*.rb"
+    - "app/admin/*.rb"
+    - 'config/environments/*.rb'
+Metrics/MethodLength:
+  Exclude:
+    - "db/**/*.rb"
+Layout/LineLength:
+  Max: 100
+  Exclude:
+    - "db/**/*.rb"
+    - "config/**/*.rb"
+    - "Rakefile"
+Style/MixinUsage:
+  Exclude:
+    - "bin/update"
+    - "bin/setup"
+Metrics/AbcSize:
+  Exclude:
+    - "db/**/*.rb"
+    - "spec/**/*.rb"
+Style/SymbolArray:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  Enabled: false
+Style/WordArray:
+  Enabled: false
+Lint/UselessMethodDefinition:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Naming/AccessorMethodName:
+  Exclude:
+    - "app/datatables/*.rb"
+RSpec/NestedGroups:
+  Max: 4
+RSpec/MultipleExpectations:
+  Max: 10
+RSpec/NamedSubject:
+  Enabled: false
+RSpec/LetSetup:
+  Enabled: false
+RSpec/ExampleLength:
+  Max: 10
+Rails/OutputSafety:
+  Exclude:
+    - "app/datatables/*.rb"
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either
+Lint/MissingSuper:
+  Exclude:
+    - 'app/reports/**/*'
