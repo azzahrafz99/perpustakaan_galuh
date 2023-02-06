@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_06_133529) do
+ActiveRecord::Schema.define(version: 2023_02_06_233055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2023_02_06_133529) do
     t.string "author"
     t.string "language"
     t.string "publisher"
-    t.integer "book_count", default: 0
+    t.integer "stock", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id"
