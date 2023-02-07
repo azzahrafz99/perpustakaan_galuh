@@ -13,3 +13,7 @@ import './datatables';
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+$(function () {
+  $('.select-two').select2();
+})

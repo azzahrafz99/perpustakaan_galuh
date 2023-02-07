@@ -1,0 +1,87 @@
+<% content_for :breadcrumb do %>
+  <div class="col-12 no-padding">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" aria-current="page">
+          <%= link_to root_path, target: "_top" do %>
+            <span>Dashboard</span>
+          <% end %>
+        </li>
+
+        <li class="breadcrumb-item active" aria-current="page">
+          <%= link_to transactions_path, target: "_top" do %>
+            <span>Transactions</span>
+          <% end %>
+        </li>
+
+        <li class="breadcrumb-item active" aria-current="page">
+          <span>Transactions Details</span>
+        </li>
+      </ol>
+    </nav>
+  </div>
+<% end %>
+
+<% if @transaction.user.eql?(current_user) && @transaction.status.eql?('delayed') %>
+  <div class="alert alert-warning" role="alert">
+    <i class="fa fa-warning"></i> You need to return the book ASAP
+  </div>
+<% end %>
+
+<div class="card card__custom mb-4">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-6">
+        <h4>Transactions Details</h4>
+      </div>
+
+      <% if current_user.admin? %>
+        <div class="col-6 text-right">
+          <%= link_to edit_transaction_path(@transaction), class: 'btn btn-info', target: "_top" do %>
+            <i class="fa fa-pencil"></i> Edit Transaction
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card-body p-0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Loan Date</th>
+          <td><%= @transaction.loan_date %></td>
+        </tr>
+        <tr>
+          <th>Period</th>
+          <td><%= @transaction.period %></td>
+        </tr>
+        <% if @transaction.return_date.present? %>
+          <tr>
+            <th>Return Date</th>
+            <td><%= @transaction.return_date %></td>
+          </tr>
+        <% else %>
+          <tr>
+            <th>Must be returned by </th>
+            <td><%= @transaction.borrow_until %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <th>User</th>
+          <td><%= @transaction.user&.email %></td>
+        </tr>
+        <tr>
+          <th>Book</th>
+          <td><%= link_to @transaction.book&.title, book_path(@transaction.book) %></td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td><%= transaction_status_badge(@transaction.status) %></td>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<% content_for :breadcrumb do %>
+  <div class="col-12 no-padding">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" aria-current="page">
+          <%= link_to root_path, target: "_top" do %>
+            <span>Dashboard</span>
+          <% end %>
+        </li>
+
+        <li class="breadcrumb-item active" aria-current="page">
+          <%= link_to transactions_path, target: "_top" do %>
+            <span>Transactions</span>
+          <% end %>
+        </li>
+
+        <li class="breadcrumb-item active" aria-current="page">
+          <span>New Transaction</span>
+        </li>
+      </ol>
+    </nav>
+  </div>
+<% end %>
+
+<div class="card card__custom mb-4">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-6">
+        <h4>New Transaction</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <%= form_for :transaction, url: transactions_path, method: :post do |f| %>
+          <%= render 'form', transaction: @transaction, f: f %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

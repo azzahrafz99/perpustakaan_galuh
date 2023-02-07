@@ -12,6 +12,12 @@
           <i class="fa fa-book"></i> Books
         <% end %>
       </li>
+
+      <li class="nav-item <%= request.path.include?("transactions") ? 'active' : '' %>">
+        <%= link_to transactions_path, class: "nav-link", target: "_top" do %>
+          <i class="fa fa-exchange"></i> Transactions
+        <% end %>
+      </li>
     </ul>
   </div>
 </nav>

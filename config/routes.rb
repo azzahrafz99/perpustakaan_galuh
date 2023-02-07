@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: 'dashboard#index'
 
   resources :books
-end  
+  resources :transactions
+end

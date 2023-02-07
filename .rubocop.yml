@@ -95,3 +95,5 @@ Rails/I18nLocaleTexts:
   Enabled: false
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
+Rails/OutputSafety:
+  Enabled: false

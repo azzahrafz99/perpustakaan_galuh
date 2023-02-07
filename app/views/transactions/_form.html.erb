@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <%= f.label :loan_date, required: true %>
+    <%= f.date_field :loan_date, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <%= f.label :period, required: true %>
+    <%= f.number_field :period, class: 'form-control', required: true %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <%= f.label :return_date %>
+    <%= f.date_field :return_date, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6">
+    <%= f.label :user_id, required: true %>
+    <%= f.select :user_id, options_for_select(User.all.collect { |user| [user.email, user.id] }, selected: f.object&.user_id), { include_blank: 'Choose One' }, class: "select-two" %>
+  </div>
+
+  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6">
+    <%= f.label :book_id, required: true %>
+    <%= f.select :book_id, options_for_select(Book.available.collect { |book| [book.title, book.id] }, selected: f.object&.book_id), { include_blank: 'Choose One' }, class: "select-two" %>
+  </div>
+</div>
+
+<%= f.submit 'Save', class: 'btn btn-primary mt-5' %>
