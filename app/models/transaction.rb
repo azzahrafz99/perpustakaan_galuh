@@ -4,6 +4,7 @@ class Transaction < ApplicationRecord
 
   validates :loan_date, :period, presence: true
   validate :return_date_is_after_loan_date
+  validate :validate_same_book
 
   after_create :decrease_stock
 
@@ -29,5 +30,13 @@ class Transaction < ApplicationRecord
 
   def decrease_stock
     book.update(stock: book.stock - 1)
+  end
+
+  def validate_same_book
+    # User can not borrow the same book if they have not return that book yet
+    transactions = Transaction.where(user_id: user_id, book_id: book_id, return_date: nil)
+    return if transactions.blank?
+
+    errors.add(:base, 'can not borrow the same book that you have not return yet')
   end
 end

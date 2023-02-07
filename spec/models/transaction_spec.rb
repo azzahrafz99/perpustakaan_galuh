@@ -77,4 +77,49 @@ RSpec.describe Transaction do
       end
     end
   end
+
+  describe '#validate_same_book' do
+    let(:user) { create(:user) }
+    let(:book) { create(:book) }
+
+    let(:transaction) do
+      build(:transaction, book: book, user: user, loan_date: Date.current)
+    end
+
+    shared_examples 'does not return error' do
+      it 'does not returns error when update name' do
+        expect { transaction.save! }.not_to raise_error \
+          ActiveRecord::RecordInvalid, 'Validation failed: ' \
+                                       'can not borrow the same book that you have not return yet'
+      end
+    end
+
+    context 'when user borrow the same book that have not returned yet' do
+      let!(:transaction2) do
+        create(:transaction, book: book, user: user, loan_date: Date.new(2023, 0o1, 0o1))
+      end
+
+      it 'returns error when update name' do
+        expect { transaction.save! }.to raise_error \
+          ActiveRecord::RecordInvalid, 'Validation failed: ' \
+                                       'can not borrow the same book that you have not return yet'
+      end
+    end
+
+    context 'when user borrow the same book but have returned it before' do
+      let!(:transaction2) do
+        create(:transaction, book: book, user: user,
+                             loan_date: Date.new(2023, 0o1, 0o1),
+                             return_date: Date.new(2023, 0o1, 0o5))
+      end
+
+      it_behaves_like 'does not return error'
+    end
+
+    context 'when user borrow the different book' do
+      let!(:transaction2) { create(:transaction, user: user) }
+
+      it_behaves_like 'does not return error'
+    end
+  end
 end
