@@ -5,6 +5,6 @@ class Book < ApplicationRecord
   has_many :transactions
   # rubocop:enable Rails/HasManyOrHasOneDependent
 
-  validates :title, :book_code, :author, :publisher, presence: true
-  validates :book_code, uniqueness: true
+  validates :title, :isbn, :author, :publisher, presence: true
+  validates :isbn, uniqueness: true
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_06_233055) do
+ActiveRecord::Schema.define(version: 2023_02_06_235806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2023_02_06_233055) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "summary"
-    t.string "book_code"
+    t.string "isbn"
     t.string "author"
     t.string "language"
     t.string "publisher"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2023_02_06_233055) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id"
-    t.index ["book_code"], name: "index_books_on_book_code", unique: true
     t.index ["category_id"], name: "index_books_on_category_id"
+    t.index ["isbn"], name: "index_books_on_isbn", unique: true
   end
 
   create_table "categories", force: :cascade do |t|

@@ -7,10 +7,10 @@ RSpec.describe Book do
   end
 
   describe 'Validations' do
-    it { is_expected.to validate_presence_of(:book_code) }
+    it { is_expected.to validate_presence_of(:isbn) }
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:author) }
     it { is_expected.to validate_presence_of(:publisher) }
-    it { is_expected.to validate_uniqueness_of(:book_code) }
+    it { is_expected.to validate_uniqueness_of(:isbn) }
   end
 end
