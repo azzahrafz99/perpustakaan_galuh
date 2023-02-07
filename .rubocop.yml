@@ -91,3 +91,7 @@ Style/HashSyntax:
 Lint/MissingSuper:
   Exclude:
     - 'app/reports/**/*'
+Rails/I18nLocaleTexts:
+  Enabled: false
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false

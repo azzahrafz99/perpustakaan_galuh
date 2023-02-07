@@ -15,4 +15,12 @@ RSpec.describe User do
       expect(user).to be_valid_password('password123')
     end
   end
+
+  describe '#assign_default_role' do
+    let!(:user) { create(:user) }
+
+    it 'assigns role user' do
+      expect(user).to have_role(:user)
+    end
+  end
 end

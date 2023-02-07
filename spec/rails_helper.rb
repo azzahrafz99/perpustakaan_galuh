@@ -1,10 +1,11 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
 SimpleCov.start 'rails' do
+  add_filter 'app/policies/application_policy.rb'
   add_filter 'channels/application_cable/channel.rb'
   add_filter 'channels/application_cable/connection.rb'
-  add_filter 'mailers/application_mailer.rb'
   add_filter 'jobs/application_job.rb'
+  add_filter 'mailers/application_mailer.rb'
 end
 
 require 'spec_helper'
@@ -51,6 +52,8 @@ end
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
 RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('spec/fixtures')
 

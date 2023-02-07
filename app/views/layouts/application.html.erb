@@ -6,6 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -23,7 +25,7 @@
           <%= render 'shared/sidebar' %>
 
           <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 bg-secondary">
-            <div class="row header">
+            <div class="row header mt-5">
               <%= yield :breadcrumb %>
             </div>
 
@@ -38,5 +40,6 @@
     <% end %>
   </body>
 
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
   <script src="https://use.fontawesome.com/74c965c3f8.js"></script>
 </html>

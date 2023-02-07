@@ -129,5 +129,12 @@ a.paginate_button.next, a.paginate_button.last, a.paginate_button.previous, a.pa
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   background: $primary !important;
-    color: white !important;
+  color: white !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  &:hover {
+    background-color: $light-grey !important;
+    cursor: not-allowed;
+  }
 }

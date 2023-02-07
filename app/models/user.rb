@@ -10,4 +10,14 @@ class User < ApplicationRecord
   # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :transactions
   # rubocop:enable Rails/HasManyOrHasOneDependent
+
+  after_create :assign_default_role
+
+  def assign_default_role
+    add_role(:user) if roles.blank?
+  end
+
+  def admin?
+    has_role?(:admin)
+  end
 end

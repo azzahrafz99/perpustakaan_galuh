@@ -3,7 +3,13 @@
     <ul class="nav flex-column">
       <li class="nav-item <%= request.path == '/' ? 'active' : '' %>">
         <%= link_to root_path, class: "nav-link", target: "_top" do %>
-          <i class="fa fa-home"></i> <%= t('labels.dashboard') %>
+          <i class="fa fa-home"></i> Dashboard
+        <% end %>
+      </li>
+
+      <li class="nav-item <%= request.path.include?("books") ? 'active' : '' %>">
+        <%= link_to books_path, class: "nav-link", target: "_top" do %>
+          <i class="fa fa-book"></i> Books
         <% end %>
       </li>
     </ul>

@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import './vendor';
+import './datatables';
 
 Rails.start()
 Turbolinks.start()

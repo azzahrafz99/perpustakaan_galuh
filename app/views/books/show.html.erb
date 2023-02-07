@@ -1,0 +1,80 @@
+<% content_for :breadcrumb do %>
+  <div class="col-12 no-padding">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" aria-current="page">
+          <%= link_to root_path, target: "_top" do %>
+            <span>Dashboard</span>
+          <% end %>
+        </li>
+
+        <li class="breadcrumb-item active" aria-current="page">
+          <%= link_to books_path, target: "_top" do %>
+            <span>Books</span>
+          <% end %>
+        </li>
+
+        <li class="breadcrumb-item active" aria-current="page">
+          <span>Book Details</span>
+        </li>
+      </ol>
+    </nav>
+  </div>
+<% end %>
+
+<div class="card card__custom mb-4">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-6">
+        <h4>Book Details</h4>
+      </div>
+      <div class="col-6 text-right">
+        <%= link_to edit_book_path(@book), class: 'btn btn-info', target: "_top" do %>
+          <i class="fa fa-pencil"></i> <%= t('labels.edit_book') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <% i18n_scope = "activerecord.attributes.book" %>
+  <div class="card-body p-0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ISBN</th>
+          <td><%= @book.isbn %></td>
+        </tr>
+        <tr>
+          <th>Title</th>
+          <td><%= @book.title %></td>
+        </tr>
+        <tr>
+          <th>Author</th>
+          <td><%= @book.author %></td>
+        </tr>
+        <tr>
+          <th>Summary</th>
+          <td><%= simple_format(@book.summary) %></td>
+        </tr>
+        <tr>
+          <th>Publisher</th>
+          <td><%= @book.publisher %></td>
+        </tr>
+        <tr>
+          <th>Category</th>
+          <td><%= @book.category&.name %></td>
+        </tr>
+        <tr>
+          <th>Language</th>
+          <td><%= @book.language %></td>
+        </tr>
+        <tr>
+          <th>Stock</th>
+          <td><%= @book.stock %></td>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
