@@ -7,5 +7,6 @@ FactoryBot.define do
     publisher { Faker::Book.publisher }
     summary   { Faker::Lorem.paragraph }
     isbn      { Faker::Number.number(digits: 10) }
+    stock     { 1 }
   end
 end
