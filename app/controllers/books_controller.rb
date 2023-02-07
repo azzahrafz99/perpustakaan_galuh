@@ -45,8 +45,12 @@ class BooksController < ApplicationController
   def destroy
     authorize @book
 
-    @book.destroy
-    redirect_to books_url, notice: 'Book was successfully destroyed.'
+    if @book.destroy
+      redirect_to books_url, notice: 'Book was successfully destroyed.'
+    else
+      flash[:error] = @book.errors.full_messages.to_sentence
+      redirect_to books_path
+    end
   end
 
   private

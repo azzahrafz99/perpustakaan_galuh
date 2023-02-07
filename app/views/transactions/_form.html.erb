@@ -25,7 +25,8 @@
 
   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6">
     <%= f.label :book_id, required: true %>
-    <%= f.select :book_id, options_for_select(Book.available.collect { |book| [book.title, book.id] }, selected: f.object&.book_id), { include_blank: 'Choose One' }, class: "select-two" %>
+    <% book_id = f.object&.book_id %>
+    <%= f.select :book_id, options_for_select((Book.available + Book.where(id: book_id)).collect { |book| [book.title, book.id] }, selected: book_id), { include_blank: 'Choose One' }, class: "select-two" %>
   </div>
 </div>
 

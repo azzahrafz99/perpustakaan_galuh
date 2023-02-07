@@ -222,14 +222,30 @@ RSpec.describe BooksController do
 
   describe 'DELETE destroy' do
     context 'when admin login' do
-      before do
-        sign_in(admin)
+      context 'when delete borrowed book' do
+        let!(:transaction) { create(:transaction, book: book) }
 
-        get :destroy, params: { id: book.id }
+        before do
+          sign_in(admin)
+
+          get :destroy, params: { id: book.id }
+        end
+
+        it 'does not remove book' do
+          expect(Book.count).to eq 1
+        end
       end
 
-      it 'removes book' do
-        expect(Book.count).to be_zero
+      context 'when delete not borrowed book' do
+        before do
+          sign_in(admin)
+
+          delete :destroy, params: { id: book.id }
+        end
+
+        it 'removes book' do
+          expect(Book.count).to be_zero
+        end
       end
     end
 
@@ -237,7 +253,7 @@ RSpec.describe BooksController do
       before do
         sign_in(user)
 
-        get :destroy, params: { id: book.id }
+        delete :destroy, params: { id: book.id }
       end
 
       it_behaves_like 'redirect to dashboard with error message'

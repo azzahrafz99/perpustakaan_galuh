@@ -98,7 +98,7 @@ RSpec.describe TransactionsController do
 
         it_behaves_like 'creates transaction'
 
-        it 'updates book stock' do
+        it 'decreases book stock' do
           expect(book.stock).to eq 1
         end
       end
@@ -159,43 +159,73 @@ RSpec.describe TransactionsController do
   end
 
   describe 'PATCH update' do
-    let(:book2) { create(:book) }
-
     let(:valid_params) do
-      {
-        id: transaction.id,
-        transaction: { book_id: book2.id }
-      }
+      { id: transaction.id, transaction: { period: 7 } }
     end
 
     let(:invalid_params) do
-      {
-        id: transaction.id,
-        transaction: { book_id: nil }
-      }
+      { id: transaction.id, transaction: { book_id: nil } }
     end
 
     context 'when admin login' do
-      before do
-        sign_in(admin)
-        patch :update, params: params
-
-        transaction.reload
-      end
-
       context 'when params is valid' do
-        let(:params) { valid_params }
+        let!(:book)         { create(:book, stock: 2) }
+        let!(:transaction2) { create(:transaction, period: 5, book: book) }
+        let(:transaction)   { transaction2 }
 
-        it 'updates transaction' do
-          expect(transaction.book).to eq book2
+        before do
+          sign_in(admin)
+          patch :update, params: params
+
+          book.reload
+          transaction2.reload
         end
+
+        # rubocop:disable RSpec/NestedGroups
+        context 'when params does not contains return_date' do
+          let(:params) { valid_params }
+
+          it 'updates transaction' do
+            expect(transaction2.period).to eq 7
+          end
+
+          it 'does not increase stock' do
+            expect(book.stock).to eq 1
+          end
+        end
+
+        context 'when params contains return_date' do
+          let(:params) do
+            {
+              id: transaction2.id,
+              transaction: { return_date: Date.current }
+            }
+          end
+
+          it 'updates transaction' do
+            expect(transaction2.return_date).to eq Date.current
+            expect(transaction2.expired_at).not_to be_nil
+          end
+
+          it 'does not increase stock' do
+            expect(book.stock).to eq 2
+          end
+        end
+        # rubocop:enable RSpec/NestedGroups
       end
 
       context 'when params is invalid' do
-        let(:params) { invalid_params }
+        before do
+          sign_in(admin)
+          patch :update, params: invalid_params
+        end
 
         it 'does not updates transaction' do
           expect(transaction.book).not_to be_nil
+        end
+
+        it 'renders edit' do
+          expect(response).to render_template('edit')
         end
       end
     end
@@ -221,15 +251,23 @@ RSpec.describe TransactionsController do
   end
 
   describe 'DELETE destroy' do
+    let!(:book)         { create(:book, stock: 2) }
+    let!(:transaction2) { create(:transaction, book: book) }
+
     context 'when admin login' do
       before do
         sign_in(admin)
+        delete :destroy, params: { id: transaction2.id }
 
-        get :destroy, params: { id: transaction.id }
+        book.reload
       end
 
       it 'removes transaction' do
-        expect(Transaction.count).to be_zero
+        expect(Transaction.count).to eq 1
+      end
+
+      it 'increases book stock' do
+        expect(book.stock).to eq 2
       end
     end
 
@@ -237,7 +275,7 @@ RSpec.describe TransactionsController do
       before do
         sign_in(user)
 
-        get :destroy, params: { id: transaction.id }
+        delete :destroy, params: { id: transaction2.id }
       end
 
       it_behaves_like 'redirect to dashboard with error message'

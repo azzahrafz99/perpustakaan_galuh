@@ -3,7 +3,7 @@ FactoryBot.define do
     association :user
     association :book
 
-    loan_date { Date.current }
+    loan_date { Date.current - 2.days }
     period    { 7 }
   end
 end
