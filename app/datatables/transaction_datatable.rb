@@ -73,7 +73,7 @@ class TransactionDatatable < AjaxDatatablesRails::ActiveRecord
             class: 'btn btn-sm btn-danger',
             id: "delete-transaction-#{transaction.id}",
             target: '_top',
-            data: { confirm: I18n.t('labels.delete_transaction_confirmation') }) do
+            data: { confirm: 'Are you sure want to delete this transaction?' }) do
       '<i class="fa fa-trash"></i>'.html_safe
     end
   end

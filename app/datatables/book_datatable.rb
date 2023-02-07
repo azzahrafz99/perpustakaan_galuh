@@ -60,7 +60,7 @@ class BookDatatable < AjaxDatatablesRails::ActiveRecord
             method: :delete,
             class: 'btn btn-sm btn-danger',
             id: "delete-book-#{book.id}",
-            data: { confirm: I18n.t('labels.delete_book_confirmation') }) do
+            data: { confirm: 'Are you sure want to delete this book?' }) do
       '<i class="fa fa-trash"></i>'.html_safe
     end
   end
