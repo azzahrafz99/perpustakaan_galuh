@@ -54,7 +54,7 @@ RSpec.describe TransactionsController do
   end
 
   describe 'POST create' do
-    let(:book) { create(:book) }
+    let(:book) { create(:book, stock: 2) }
 
     let(:valid_params) do
       {
@@ -75,10 +75,9 @@ RSpec.describe TransactionsController do
     end
 
     shared_examples 'creates transaction' do
-      let(:params)           { valid_params }
       let(:last_transaction) { Transaction.last }
 
-      it 'creates book' do
+      it 'creates transaction' do
         expect(last_transaction.book).to eq book
         expect(last_transaction.user).to eq user
         expect(last_transaction.loan_date).to eq Date.current
@@ -90,10 +89,18 @@ RSpec.describe TransactionsController do
       before do
         sign_in(admin)
         post :create, params: params
+
+        book.reload
       end
 
       context 'when params is valid' do
+        let(:params) { valid_params }
+
         it_behaves_like 'creates transaction'
+
+        it 'updates book stock' do
+          expect(book.stock).to eq 1
+        end
       end
 
       context 'when params is invalid' do
@@ -112,6 +119,8 @@ RSpec.describe TransactionsController do
       end
 
       context 'when params is valid' do
+        let(:params) { valid_params }
+
         it_behaves_like 'creates transaction'
       end
 

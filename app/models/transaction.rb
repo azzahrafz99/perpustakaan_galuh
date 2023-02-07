@@ -5,6 +5,8 @@ class Transaction < ApplicationRecord
   validates :loan_date, :period, presence: true
   validate :return_date_is_after_loan_date
 
+  after_create :decrease_stock
+
   def status
     current_date = Date.current
     return 'done' if return_date.present?
@@ -23,5 +25,9 @@ class Transaction < ApplicationRecord
     return unless loan_date.present? && return_date.present?
 
     errors.add(:return_date, 'cannot be before the loan date') if return_date < loan_date
+  end
+
+  def decrease_stock
+    book.update(stock: book.stock - 1)
   end
 end
