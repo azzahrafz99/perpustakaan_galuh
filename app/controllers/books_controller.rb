@@ -26,6 +26,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to book_url(@book), notice: 'Book was successfully created.'
     else
+      flash[:error] = @book.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
     end
   end
@@ -36,6 +37,7 @@ class BooksController < ApplicationController
     if @book.update(book_params)
       redirect_to book_url(@book), notice: 'Book was successfully updated.'
     else
+      flash[:error] = @book.errors.full_messages.to_sentence
       render :edit, status: :unprocessable_entity
     end
   end

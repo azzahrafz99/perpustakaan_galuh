@@ -24,6 +24,7 @@ class TransactionsController < ApplicationController
     if @transaction.save
       redirect_to transaction_url(@transaction), notice: 'Transaction was successfully created.'
     else
+      flash[:error] = @transaction.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
     end
   end
@@ -34,6 +35,7 @@ class TransactionsController < ApplicationController
     if @transaction.update(transaction_params)
       redirect_to transaction_url(@transaction), notice: 'Transaction was successfully updated.'
     else
+      flash[:error] = @transaction.errors.full_messages.to_sentence
       render :edit, status: :unprocessable_entity
     end
   end
