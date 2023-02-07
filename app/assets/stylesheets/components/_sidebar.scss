@@ -10,14 +10,14 @@
       i {
         margin-right: 10px;
       }
+
+      &:hover {
+        background-color: $primary;
+      }
     }
 
     .nav-link {
       color: white;
-    }
-
-    &:hover {
-      background-color: $primary;
     }
 
     .nav-item.active {

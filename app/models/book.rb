@@ -7,4 +7,10 @@ class Book < ApplicationRecord
 
   validates :title, :isbn, :author, :publisher, presence: true
   validates :isbn, uniqueness: true
+
+  scope :available, -> { where('stock > ?', 0) }
+
+  def available?
+    stock.positive?
+  end
 end

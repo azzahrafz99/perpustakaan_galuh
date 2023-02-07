@@ -28,15 +28,17 @@
       <div class="col-6">
         <h4>Book Details</h4>
       </div>
-      <div class="col-6 text-right">
-        <%= link_to edit_book_path(@book), class: 'btn btn-info', target: "_top" do %>
-          <i class="fa fa-pencil"></i> <%= t('labels.edit_book') %>
-        <% end %>
-      </div>
+
+      <% if current_user.admin? %>
+        <div class="col-6 text-right">
+          <%= link_to edit_book_path(@book), class: 'btn btn-info', target: "_top" do %>
+            <i class="fa fa-pencil"></i> <%= t('labels.edit_book') %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 
-  <% i18n_scope = "activerecord.attributes.book" %>
   <div class="card-body p-0">
     <table class="table">
       <thead>

@@ -191,7 +191,7 @@ RSpec.describe BooksController do
       context 'when params is invalid' do
         let(:params) { invalid_params }
 
-        it 'updates book' do
+        it 'does not updates book' do
           expect(book.isbn).to eq '0889290936097'
           expect(book.title).to eq 'Born a Crime: Stories From a South African Childhood'
           expect(book.publisher).to eq 'Spiegel & Grau'

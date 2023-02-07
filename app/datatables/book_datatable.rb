@@ -1,5 +1,6 @@
 class BookDatatable < AjaxDatatablesRails::ActiveRecord
   include ApplicationHelper
+  include BooksHelper
   extend Forwardable
 
   def_delegators :@view, :raw, :link_to, :safe_join, :current_user,
@@ -18,6 +19,7 @@ class BookDatatable < AjaxDatatablesRails::ActiveRecord
       title: { source: 'Book.title', cond: :like },
       author: { source: 'Book.author', cond: :like },
       stock: { source: 'Book.stock', cond: :like },
+      status: { source: 'Book.stock', searchable: false, orderable: false },
       actions: { searchable: false, orderable: false }
     }
   end
@@ -25,11 +27,9 @@ class BookDatatable < AjaxDatatablesRails::ActiveRecord
   def data
     records.map do |record|
       {
-        isbn: record.isbn,
-        title: record.title,
-        author: record.author,
-        stock: record.stock,
-        actions: actions(record),
+        isbn: record.isbn, title: record.title,
+        author: record.author, stock: record.stock,
+        status: book_status_badge(record), actions: actions(record),
         DT_RowId: record.id
       }
     end
@@ -51,7 +51,7 @@ class BookDatatable < AjaxDatatablesRails::ActiveRecord
 
   def show_link(book)
     link_to(book_path(book), class: 'btn btn-sm btn-info', id: "show-book-#{book.id}") do
-      raw '<i class="fa fa-eye"></i>'
+      '<i class="fa fa-eye"></i>'.html_safe
     end
   end
 
@@ -61,13 +61,13 @@ class BookDatatable < AjaxDatatablesRails::ActiveRecord
             class: 'btn btn-sm btn-danger',
             id: "delete-book-#{book.id}",
             data: { confirm: I18n.t('labels.delete_book_confirmation') }) do
-      raw '<i class="fa fa-trash"></i>'
+      '<i class="fa fa-trash"></i>'.html_safe
     end
   end
 
   def edit_link(book)
     link_to(edit_book_path(book), id: "edit-book-#{book.id}", class: 'btn btn-sm btn-warning') do
-      raw '<i class="fa fa-pencil"></i>'
+      '<i class="fa fa-pencil"></i>'.html_safe
     end
   end
 end

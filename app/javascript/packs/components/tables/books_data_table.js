@@ -22,6 +22,7 @@ export default class BooksDataTable {
           {"data": "title"},
           {"data": "author"},
           {"data": "stock"},
+          {"data": "status"},
           {"data": "actions"}
         ]
         // pagingType is optional, if you want full pagination controls.
