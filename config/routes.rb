@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :books
   resources :categories
   resources :transactions
+  resources :users, except: [:new, :create]
 end

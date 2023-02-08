@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User' do
   let!(:user)         { create(:user) }
+  let!(:admin)        { create(:admin) }
   let!(:invalid_user) { build(:user, email: 'tes@sample.com', password: 'password') }
 
   context 'when user sign up' do
@@ -55,6 +56,19 @@ RSpec.describe 'User' do
       change_password_failed(user)
 
       expect(page).to have_text('error prohibited this user from being saved')
+    end
+  end
+
+  context 'when admin go to users page' do
+    before do
+      sign_in_user(admin)
+      visit users_path
+    end
+
+    it 'only shows all users' do
+      within('table > tbody') do
+        expect(all('tr').count).to eq 2
+      end
     end
   end
 end
