@@ -7,10 +7,10 @@ export default class BooksDataTable {
     function showBooksTable() {
       $('#books-datatable').dataTable({
         "order": [],
-        "columnDefs": [ {
-          "targets"  : 'no-sort',
-          "orderable": false,
-        }],
+        "columnDefs": [
+          { "orderable": true, "targets": [0, 1, 2, 3] },
+          { "orderable": false, "targets": [4, 5] },
+        ],
         "processing": true,
         "serverSide": true,
         "ajax": {

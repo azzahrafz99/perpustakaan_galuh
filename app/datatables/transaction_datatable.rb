@@ -5,7 +5,7 @@ class TransactionDatatable < AjaxDatatablesRails::ActiveRecord
 
   def_delegators :@view, :raw, :link_to, :safe_join, :current_user,
                  :transaction_path, :edit_transaction_path,
-                 :book_path
+                 :book_path, :user_path, :edit_user_registration_path
 
   def initialize(params, opts = {})
     @view = opts[:view_context]
@@ -30,7 +30,7 @@ class TransactionDatatable < AjaxDatatablesRails::ActiveRecord
     records.map do |record|
       {
         isbn: book_link_by_isbn(record.book), book_title: book_link(record.book),
-        user: record.user&.email, loan_date: record.loan_date,
+        user: user_link(record.user), loan_date: record.loan_date,
         period: "#{record.period} days", status: transaction_status_badge(record.status),
         actions: actions(record), DT_RowId: record.id
       }
@@ -51,6 +51,11 @@ class TransactionDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   private
+
+  def user_link(user)
+    path = user.eql?(current_user) ? edit_user_registration_path : user_path(user)
+    link_to user&.email, path
+  end
 
   def book_link(book)
     link_to book&.title, book_path(book)

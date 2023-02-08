@@ -1,0 +1,17 @@
+<% content_for :breadcrumb do %>
+  <div class="col-12 no-padding">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+          <span>Dashboard</span>
+        </li>
+      </ol>
+    </nav>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-12">
+    <h2 class="text-primary ml-3 welcome">Welcome back, <%= current_user.email %></h2>
+  </div>
+</div>

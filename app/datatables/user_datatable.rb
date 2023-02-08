@@ -54,7 +54,7 @@ class UserDatatable < AjaxDatatablesRails::ActiveRecord
             method: :delete,
             class: 'btn btn-sm btn-danger',
             id: "delete-user-#{user.id}",
-            data: { confirm: I18n.t('labels.delete_user_confirmation') }) do
+            data: { confirm: 'Are you sure you want delete this user?' }) do
       raw '<i class="fa fa-trash"></i>'
     end
   end

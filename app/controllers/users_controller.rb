@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     authorize @user
 
     if @user.update(user_params)
-      redirect_to user_url(@user), notice: 'User was successfully updated.'
+      redirect_to user_url(@user), notice: 'Transaction was successfully updated.'
     else
       flash[:error] = @user.errors.full_messages.to_sentence
       render :edit, status: :unprocessable_entity
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def destroy
     authorize @user
 
-    redirect_to users_path, notice: t('labels.delete_user_success') if @user.destroy
+    redirect_to users_path, notice: 'Transaction was successfully created.' if @user.destroy
   end
 
   private
