@@ -1,0 +1,58 @@
+<% content_for :breadcrumb do %>
+  <div class="col-12 no-padding">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" aria-current="page">
+          <%= link_to root_path, target: "_top" do %>
+            <span>Dashboard</span>
+          <% end %>
+        </li>
+
+        <li class="breadcrumb-item active" aria-current="page">
+          <%= link_to categories_path, target: "_top" do %>
+            <span>Categories</span>
+          <% end %>
+        </li>
+
+        <li class="breadcrumb-item active" aria-current="page">
+          <span>Category Details</span>
+        </li>
+      </ol>
+    </nav>
+  </div>
+<% end %>
+
+<div class="card card__custom mb-4">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-6">
+        <h4>Category Details</h4>
+      </div>
+
+      <div class="col-6 text-right">
+        <%= link_to books_path(category: @category.name), class: 'btn btn-primary', target: "_top" do %>
+          <i class="fa fa-book"></i> Books
+        <% end %>
+
+        <% if current_user.admin? %>
+          <%= link_to edit_category_path(@category), class: 'btn btn-info', target: "_top" do %>
+            <i class="fa fa-pencil"></i> Edit Category
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body p-0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <td><%= @category.name %></td>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<% content_for :breadcrumb do %>
+  <div class="col-12 no-padding">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" aria-current="page">
+          <%= link_to root_path, target: "_top" do %>
+            <span>Dashboard</span>
+          <% end %>
+        </li>
+
+        <li class="breadcrumb-item active" aria-current="page">
+          <%= link_to categories_path, target: "_top" do %>
+            <span>Categories</span>
+          <% end %>
+        </li>
+
+        <li class="breadcrumb-item active" aria-current="page">
+          <%= link_to category_path(@category), target: "_top" do %>
+            <span>Category Details</span>
+          <% end %>
+        </li>
+
+        <li class="breadcrumb-item active" aria-current="page">
+          <span>Edit Category</span>
+        </li>
+      </ol>
+    </nav>
+  </div>
+<% end %>
+
+<div class="card card__custom mb-4">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-6">
+        <h4>Edit Category</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-6">
+        <%= form_for @category, url: category_path(@category), method: :patch do |f| %>
+          <%= render 'form', category: @category, f: f %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

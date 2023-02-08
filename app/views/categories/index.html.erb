@@ -1,0 +1,47 @@
+<% content_for :breadcrumb do %>
+  <div class="col-12 no-padding">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" aria-current="page">
+          <%= link_to root_path, target: "_top" do %>
+            <span>Dashboard</span>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          <span>Categories</span>
+        </li>
+      </ol>
+    </nav>
+  </div>
+<% end %>
+
+<div class="card card__custom mb-4">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-6">
+        <h4>Categories</h4>
+      </div>
+
+      <div class="col-6 text-right">
+        <% if current_user.admin? %>
+          <%= link_to new_category_path, class: 'btn btn-info', id: "add-new-category" do %>
+            <i class="fa fa-plus"></i> Add new category
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body p-0">
+    <table class="table" id="categories-datatable" data-source="<%= categories_path(format: :json) %>">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col" class="no-sort">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
