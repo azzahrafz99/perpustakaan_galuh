@@ -1,25 +1,50 @@
-<h2>Change your password</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="header">
+        <div class="main-content">
+          <h3 class="title text-grey">Change your password</h3>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+          <% flash.each do |message_type, message| %>
+            <div class="alert flash-<%= message_type %> alert-<%= message_type == 'notice' ? 'success' : 'danger' %>">
+              <%= content_tag(:div, message, role: "alert") %>
+            </div>
+          <% end %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+          <div class="form">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+              <%= render "users/shared/error_messages", resource: resource %>
+              <%= f.hidden_field :reset_password_token %>
+
+              <div class='form-group material-input-text'>
+                <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control" %>
+                <%= f.label :password %>
+                <% if @minimum_password_length %>
+                  <small>(<%= @minimum_password_length %> characters minimum)</small>
+                <% end %><br />
+              </div>
+
+              <div class='form-group material-input-text'>
+                <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
+                <%= f.label :password_confirmation, "Confirm new password" %><br />
+              </div>
+
+              <div class="actions form-group">
+                <%= f.submit "Change my password", class: 'btn btn-default btn-primary' %>
+              </div>
+
+              <%= render "users/shared/links" %>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="background">
+        <p class="credit">Photo by Mark Boss on Unsplash</p>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
