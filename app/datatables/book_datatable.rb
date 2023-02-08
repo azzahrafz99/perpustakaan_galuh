@@ -36,7 +36,7 @@ class BookDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    Book.all
+    params[:category].present? ? books_by_category : Book.all
   end
 
   def actions(book)
@@ -48,6 +48,10 @@ class BookDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   private
+
+  def books_by_category
+    Book.joins(:category).where(category: { name: params[:category] })
+  end
 
   def show_link(book)
     link_to(book_path(book), class: 'btn btn-sm btn-info', id: "show-book-#{book.id}") do

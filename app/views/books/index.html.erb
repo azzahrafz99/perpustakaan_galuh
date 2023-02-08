@@ -33,7 +33,7 @@
   </div>
 
   <div class="card-body p-0">
-    <table class="table" id="books-datatable" data-source="<%= books_path(format: :json) %>">
+    <table class="table" id="books-datatable" data-source="<%= books_path(category: params[:category], format: :json) %>">
       <thead>
         <tr>
           <th scope="col">ISBN</th>

@@ -228,7 +228,7 @@ RSpec.describe BooksController do
         before do
           sign_in(admin)
 
-          get :destroy, params: { id: book.id }
+          delete :destroy, params: { id: book.id }
         end
 
         it 'does not remove book' do
